@@ -1,59 +1,104 @@
 package pl.breku;
 
-import javax.servlet.annotation.WebServlet;
-
-import pl.breku.backend.CrudService;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.VaadinRequest;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.data.provider.CallbackDataProvider;
 import com.vaadin.data.provider.DataProvider;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.navigator.Navigator;
+import com.vaadin.server.Page;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinServlet;
+import com.vaadin.spring.annotation.SpringUI;
+import com.vaadin.spring.navigator.SpringViewProvider;
+import com.vaadin.ui.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import pl.breku.backend.CrudService;
+import pl.breku.dashboard.DashboardPage;
+import pl.breku.login.LoginPage;
+import pl.breku.login.OtherSecurePage;
+import pl.breku.login.SecurePage;
+
+import javax.servlet.annotation.WebServlet;
+
 
 /**
  *
  */
+@SpringUI
 @Theme("mytheme")
 public class MyUI extends UI {
 
-    private CrudService<Person> service = new CrudService<>();
-    private DataProvider<Person, String> dataProvider = new CallbackDataProvider<>(
-                    query -> service.findAll().stream(),
-                    query -> service.findAll().size());
+	@Autowired
+	private CrudService<Person> service ;
 
-    @Override
-    protected void init(VaadinRequest vaadinRequest) {
-        final VerticalLayout layout = new VerticalLayout();
-        final TextField name = new TextField();
-        name.setCaption("Type your name here:");
+	private DataProvider<Person, String> dataProvider = new CallbackDataProvider<>(
+			query -> service.findAll().stream(),
+			query -> service.findAll().size());
 
-        final Button button = new Button("Click Me");
-        button.addClickListener(e -> {
-            service.save(new Person(name.getValue()));
-            dataProvider.refreshAll();
-        });
 
-        final Grid<Person> grid = new Grid<>();
-        grid.addColumn(Person::getName).setCaption("Name");
-        grid.setDataProvider(dataProvider);
-        grid.setSizeFull();
+	@Autowired
+	private SpringViewProvider viewProvider;
 
-        // This is a component from the jbcity-courses-addon module
-        //layout.addComponent(new MyComponent());
-        layout.addComponents(name, button, grid);
-        layout.setSizeFull();
-        layout.setExpandRatio(grid, 1.0f);
+	@Override
+	protected void init(VaadinRequest vaadinRequest) {
 
-        setContent(layout);
-    }
+		new Navigator(this, this);
 
-    @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
-    @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
-    public static class MyUIServlet extends VaadinServlet {
-    }
+		getNavigator().addView(LoginPage.NAME, LoginPage.class);
+		getNavigator().setErrorView(LoginPage.class);
+		getNavigator().navigateTo(DashboardPage.VIEW_NAME);
+		getNavigator().addProvider(viewProvider);
+
+//		Page.getCurrent().addUriFragmentChangedListener((Page.UriFragmentChangedListener) event -> router(event.getUriFragment()));
+
+
+//		router("");
+
+//		defaultOne();
+	}
+
+	private void router(String route) {
+		Notification.show(route);
+		if (getSession().getAttribute("user") != null) {
+			getNavigator().addView(SecurePage.NAME, SecurePage.class);
+			getNavigator().addView(OtherSecurePage.NAME, OtherSecurePage.class);
+			if (route.equals("!OtherSecure")) {
+				getNavigator().navigateTo(OtherSecurePage.NAME);
+			} else {
+				getNavigator().navigateTo(SecurePage.NAME);
+			}
+		} else {
+			getNavigator().navigateTo(LoginPage.NAME);
+		}
+	}
+
+	private void defaultOne() {
+		final VerticalLayout layout = new VerticalLayout();
+		final TextField name = new TextField();
+		name.setCaption("Type your name here:");
+
+		final Button button = new Button("Click Me");
+		button.addClickListener(e -> {
+			service.save(new Person(name.getValue()));
+			dataProvider.refreshAll();
+		});
+
+		final Grid<Person> grid = new Grid<>();
+		grid.addColumn(Person::getName).setCaption("Name");
+		grid.setDataProvider(dataProvider);
+		grid.setSizeFull();
+
+		// This is a component from the jbcity-courses-addon module
+		//layout.addComponent(new MyComponent());
+		layout.addComponents(name, button, grid);
+		layout.setSizeFull();
+		layout.setExpandRatio(grid, 1.0f);
+
+		setContent(layout);
+	}
+
+	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
+	@VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
+	public static class MyUIServlet extends VaadinServlet {
+	}
 }

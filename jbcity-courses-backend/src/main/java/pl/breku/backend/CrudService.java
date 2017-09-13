@@ -1,5 +1,7 @@
 package pl.breku.backend;
 
+import org.springframework.stereotype.Component;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -13,6 +15,7 @@ import java.util.Set;
  * @param <T>
  *            bean type
  */
+@Component
 public class CrudService<T> implements Serializable {
 
     private Set<T> storage = new LinkedHashSet<T>();
