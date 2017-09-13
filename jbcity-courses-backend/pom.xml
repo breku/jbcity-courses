@@ -14,6 +14,14 @@
 
 	<dependencies>
 
+		<!-- Utils -->
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>com.vaadin</groupId>

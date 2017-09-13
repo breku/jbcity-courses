@@ -37,6 +37,12 @@
 			<artifactId>vaadin-client-compiled</artifactId>
 		</dependency>
 
+		<!-- Utils -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
 
 		<!-- Spring -->
 		<dependency>

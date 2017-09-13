@@ -4,13 +4,14 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.data.provider.CallbackDataProvider;
 import com.vaadin.data.provider.DataProvider;
-import com.vaadin.navigator.Navigator;
-import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.spring.annotation.SpringUI;
+import com.vaadin.spring.navigator.SpringNavigator;
 import com.vaadin.spring.navigator.SpringViewProvider;
+import com.vaadin.spring.server.SpringVaadinServletRequest;
 import com.vaadin.ui.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.breku.backend.CrudService;
 import pl.breku.dashboard.DashboardPage;
@@ -26,10 +27,11 @@ import javax.servlet.annotation.WebServlet;
  */
 @SpringUI
 @Theme("mytheme")
+@Slf4j
 public class MyUI extends UI {
 
 	@Autowired
-	private CrudService<Person> service ;
+	private CrudService<Person> service;
 
 	private DataProvider<Person, String> dataProvider = new CallbackDataProvider<>(
 			query -> service.findAll().stream(),
@@ -39,15 +41,16 @@ public class MyUI extends UI {
 	@Autowired
 	private SpringViewProvider viewProvider;
 
+	@Autowired
+	private SpringNavigator springNavigator;
+
 	@Override
 	protected void init(VaadinRequest vaadinRequest) {
-
-		new Navigator(this, this);
-
-		getNavigator().addView(LoginPage.NAME, LoginPage.class);
-		getNavigator().setErrorView(LoginPage.class);
-		getNavigator().navigateTo(DashboardPage.VIEW_NAME);
+		log.info("Request to url={}", ((SpringVaadinServletRequest) vaadinRequest).getRequestURI());
+		springNavigator.init(this, this);
 		getNavigator().addProvider(viewProvider);
+
+		getNavigator().navigateTo(DashboardPage.VIEW_NAME);
 
 //		Page.getCurrent().addUriFragmentChangedListener((Page.UriFragmentChangedListener) event -> router(event.getUriFragment()));
 
@@ -56,6 +59,8 @@ public class MyUI extends UI {
 
 //		defaultOne();
 	}
+
+
 
 	private void router(String route) {
 		Notification.show(route);

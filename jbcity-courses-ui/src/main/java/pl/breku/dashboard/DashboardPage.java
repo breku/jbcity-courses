@@ -7,6 +7,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
+import pl.breku.menu.MenuNavigationBar;
 import pl.breku.page.AbstractPage;
 
 /**
@@ -19,8 +20,6 @@ public class DashboardPage extends AbstractPage {
 
 	private static final long serialVersionUID = 2111328748647906890L;
 
-	@Autowired
-	private SpringNavigator springNavigator;
 
 	@Override
 	public void enter(ViewChangeListener.ViewChangeEvent event) {
@@ -30,7 +29,7 @@ public class DashboardPage extends AbstractPage {
 
 	@Override
 	protected void init() {
-		setSizeFull();
+		super.init();
 		VerticalLayout verticalLayout = new VerticalLayout();
 		verticalLayout.addComponent(new Label("This is dashboard"));
 		addComponent(verticalLayout);
