@@ -31,6 +31,10 @@ public class DashboardPage extends AbstractPage {
 	protected void init() {
 		super.init();
 		VerticalLayout verticalLayout = new VerticalLayout();
+		verticalLayout.setSizeFull();
+		verticalLayout.setWidth("100%");
+		verticalLayout.setMargin(false);
+		verticalLayout.setSpacing(false);
 		verticalLayout.addComponent(new Label("This is dashboard"));
 		addComponent(verticalLayout);
 

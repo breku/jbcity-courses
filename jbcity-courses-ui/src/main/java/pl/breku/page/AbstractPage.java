@@ -22,8 +22,8 @@ public abstract class AbstractPage extends VerticalLayout implements View {
 	@PostConstruct
 	protected void init() {
 		setSizeFull();
-		VerticalLayout verticalLayout = new VerticalLayout();
-		verticalLayout.addComponent(new MenuNavigationBar(springNavigator));
-		addComponent(verticalLayout);
+		setSpacing(false);
+		setMargin(false);
+		addComponent(new MenuNavigationBar(springNavigator));
 	}
 }
