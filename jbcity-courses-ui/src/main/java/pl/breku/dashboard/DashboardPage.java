@@ -3,7 +3,9 @@ package pl.breku.dashboard;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.navigator.SpringNavigator;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.breku.page.AbstractPage;
 
@@ -23,6 +25,15 @@ public class DashboardPage extends AbstractPage {
 	@Override
 	public void enter(ViewChangeListener.ViewChangeEvent event) {
 		Notification.show("Welcome to the Animal Farm");
+
+	}
+
+	@Override
+	protected void init() {
+		setSizeFull();
+		VerticalLayout verticalLayout = new VerticalLayout();
+		verticalLayout.addComponent(new Label("This is dashboard"));
+		addComponent(verticalLayout);
 
 	}
 }
