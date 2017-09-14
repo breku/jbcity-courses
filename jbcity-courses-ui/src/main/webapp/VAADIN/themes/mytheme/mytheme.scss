@@ -57,7 +57,7 @@ $v-panel-border: 2px solid v-shade;
 // Example variants can be copy/pasted from https://vaadin.com/wiki/-/wiki/Main/Valo+Examples
 
 @import "../valo/valo.scss";
-
+@import "custom.scss";
 
 @mixin mytheme {
   @include valo;

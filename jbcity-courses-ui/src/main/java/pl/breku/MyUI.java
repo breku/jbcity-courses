@@ -47,7 +47,7 @@ public class MyUI extends UI {
 	@Override
 	protected void init(VaadinRequest vaadinRequest) {
 		log.info("Request to url={}", ((SpringVaadinServletRequest) vaadinRequest).getRequestURI());
-		setSizeFull();
+
 
 		springNavigator.init(this, this);
 		getNavigator().addProvider(viewProvider);

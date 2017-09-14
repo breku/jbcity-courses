@@ -14,16 +14,32 @@ import javax.annotation.PostConstruct;
 public abstract class AbstractPage extends VerticalLayout implements View {
 
 
-	@Autowired
-	private SpringNavigator springNavigator;
-
 	private static final long serialVersionUID = 4603458569679095452L;
+
+	@Autowired
+	protected SpringNavigator springNavigator;
 
 	@PostConstruct
 	protected void init() {
-		setSizeFull();
 		setSpacing(false);
 		setMargin(false);
-		addComponent(new MenuNavigationBar(springNavigator));
+
+		MenuNavigationBar menuNavigationBar = new MenuNavigationBar(springNavigator);
+		addComponent(menuNavigationBar);
+		VerticalLayout wrapper = createWrapper();
+		addComponent(wrapper);
+		createComponent(wrapper);
+	}
+
+	protected abstract void createComponent(VerticalLayout wrapper);
+
+
+	private VerticalLayout createWrapper() {
+		VerticalLayout verticalLayout = new VerticalLayout();
+		verticalLayout.setSizeFull();
+		verticalLayout.setWidth("100%");
+		verticalLayout.setMargin(false);
+		verticalLayout.setSpacing(false);
+		return verticalLayout;
 	}
 }

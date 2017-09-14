@@ -2,12 +2,10 @@ package pl.breku.dashboard;
 
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
-import com.vaadin.spring.navigator.SpringNavigator;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
-import org.springframework.beans.factory.annotation.Autowired;
-import pl.breku.menu.MenuNavigationBar;
 import pl.breku.page.AbstractPage;
 
 /**
@@ -27,16 +25,20 @@ public class DashboardPage extends AbstractPage {
 
 	}
 
-	@Override
-	protected void init() {
-		super.init();
-		VerticalLayout verticalLayout = new VerticalLayout();
-		verticalLayout.setSizeFull();
-		verticalLayout.setWidth("100%");
-		verticalLayout.setMargin(false);
-		verticalLayout.setSpacing(false);
-		verticalLayout.addComponent(new Label("This is dashboard"));
-		addComponent(verticalLayout);
 
+	@Override
+	protected void createComponent(VerticalLayout wrapper) {
+		wrapper.addComponent(createDashboardImage());
+		wrapper.addComponent(new Label("This is dashboard"));
 	}
+
+	private Component createDashboardImage() {
+		final VerticalLayout result = new VerticalLayout();
+		result.addStyleName("jb-dashboard-image");
+		result.setSpacing(false);
+		result.setSizeFull();
+		return result;
+	}
+
+
 }
