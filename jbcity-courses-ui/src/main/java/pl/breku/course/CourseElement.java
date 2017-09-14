@@ -12,6 +12,8 @@ import pl.breku.backend.course.Course;
 public class CourseElement extends VerticalLayout {
 
 
+	private static final long serialVersionUID = -3422266139435191326L;
+
 	private final SpringNavigator springNavigator;
 
 	private final Course course;
@@ -21,7 +23,7 @@ public class CourseElement extends VerticalLayout {
 		this.course = course;
 		addComponent(new Label(course.getName()));
 		addComponent(new Button("Start", (Button.ClickListener) event -> {
-			springNavigator.navigateTo(CourseOverviewPage.VIEW_NAME);
+			springNavigator.navigateTo(String.format("%s/%s", CourseOverviewPage.VIEW_NAME, course.getId()));
 		}));
 	}
 

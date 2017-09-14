@@ -52,7 +52,7 @@ public class MyUI extends UI {
 		springNavigator.init(this, this);
 		getNavigator().addProvider(viewProvider);
 
-		getNavigator().navigateTo(DashboardPage.VIEW_NAME);
+//		getNavigator().navigateTo(DashboardPage.VIEW_NAME);
 
 //		Page.getCurrent().addUriFragmentChangedListener((Page.UriFragmentChangedListener) event -> router(event.getUriFragment()));
 

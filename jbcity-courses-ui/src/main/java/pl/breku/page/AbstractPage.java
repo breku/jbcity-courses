@@ -34,7 +34,7 @@ public abstract class AbstractPage extends VerticalLayout implements View {
 	protected abstract void createComponent(VerticalLayout wrapper);
 
 
-	private VerticalLayout createWrapper() {
+	protected VerticalLayout createWrapper() {
 		VerticalLayout verticalLayout = new VerticalLayout();
 		verticalLayout.setSizeFull();
 		verticalLayout.setWidth("100%");

@@ -12,5 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Course {
 
+	private long id;
+
 	private String name;
 }
