@@ -23,6 +23,8 @@ import pl.breku.error.ErrorPage;
 @Component
 public class MyUI extends UI {
 
+	private static final long serialVersionUID = 1000504781843211331L;
+
 	@Autowired
 	private SpringViewProvider viewProvider;
 
