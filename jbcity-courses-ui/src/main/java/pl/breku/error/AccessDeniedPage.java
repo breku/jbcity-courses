@@ -7,20 +7,21 @@ import org.springframework.context.annotation.Scope;
 import pl.breku.page.AbstractPage;
 
 /**
- * Created by breku on 14.09.17.
+ * Created by breku on 28.10.17.
  */
 @Scope("prototype")
-@SpringView(name = ErrorPage.VIEW_NAME)
-public class ErrorPage extends AbstractPage {
+@SpringView(name = AccessDeniedPage.VIEW_NAME)
+public class AccessDeniedPage extends AbstractPage {
 
-	public static final String VIEW_NAME = "error";
+	public static final String VIEW_NAME = "access-denied";
 
-	private static final long serialVersionUID = -1275813301618495176L;
+	private static final long serialVersionUID = 3700601137073074947L;
+
 
 	@Override
 	protected void init() {
-		setSpacing(false);
 		setMargin(false);
+		setSpacing(false);
 		final VerticalLayout wrapper = createWrapper();
 		addComponent(wrapper);
 		createComponent(wrapper);
@@ -28,6 +29,6 @@ public class ErrorPage extends AbstractPage {
 
 	@Override
 	protected void createComponent(VerticalLayout wrapper) {
-		wrapper.addComponent(new Label("Access denied"));
+		wrapper.addComponent(new Label("Access denied page"));
 	}
 }

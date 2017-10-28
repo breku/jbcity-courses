@@ -5,6 +5,7 @@ import com.vaadin.spring.navigator.SpringNavigator;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.vaadin.spring.security.VaadinSecurity;
 import pl.breku.menu.MenuNavigationBar;
 
 import javax.annotation.PostConstruct;
@@ -20,12 +21,15 @@ public abstract class AbstractPage extends VerticalLayout implements View {
 	@Autowired
 	protected SpringNavigator springNavigator;
 
+	@Autowired
+	VaadinSecurity vaadinSecurity;
+
 	@PostConstruct
 	protected void init() {
 		setSpacing(false);
 		setMargin(false);
 
-		MenuNavigationBar menuNavigationBar = new MenuNavigationBar(springNavigator);
+		MenuNavigationBar menuNavigationBar = new MenuNavigationBar(springNavigator,vaadinSecurity);
 		addComponent(menuNavigationBar);
 		VerticalLayout wrapper = createWrapper();
 		addComponent(wrapper);

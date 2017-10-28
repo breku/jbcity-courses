@@ -4,13 +4,16 @@ import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import pl.breku.backend.course.task.TaskProvider;
+import pl.breku.backend.security.RoleType;
 import pl.breku.course.ui.CourseContent;
 import pl.breku.page.AbstractPage;
 
 /**
  * Created by breku on 25.10.17.
  */
+@Secured("ROLE_ADMIN")
 @SpringView(name = SailorCoursePage.VIEW_NAME)
 public class SailorCoursePage extends AbstractPage {
 

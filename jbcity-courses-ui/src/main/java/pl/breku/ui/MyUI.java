@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.breku.dashboard.DashboardPage;
+import pl.breku.error.AccessDeniedPage;
 import pl.breku.error.ErrorPage;
 
 
@@ -31,11 +32,16 @@ public class MyUI extends UI {
 	@Autowired
 	private SpringNavigator springNavigator;
 
+	@Autowired
+	private SpringViewProvider springViewProvider;
+
+
 	@Override
 	protected void init(VaadinRequest vaadinRequest) {
 		log.info("Request to url={}", ((SpringVaadinServletRequest) vaadinRequest).getRequestURI());
 		springNavigator.init(this, this);
 		springNavigator.setErrorView(ErrorPage.class);
+		springViewProvider.setAccessDeniedViewClass(AccessDeniedPage.class);
 		getNavigator().addProvider(viewProvider);
 		springNavigator.navigateTo(DashboardPage.VIEW_NAME);
 

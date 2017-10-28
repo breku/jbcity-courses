@@ -3,6 +3,7 @@ package pl.breku.menu;
 import com.vaadin.spring.navigator.SpringNavigator;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.VerticalLayout;
+import org.vaadin.spring.security.VaadinSecurity;
 import pl.breku.course.sailor.SailorCoursePage;
 import pl.breku.dashboard.DashboardPage;
 
@@ -15,8 +16,11 @@ public class MenuNavigationBar extends VerticalLayout {
 
 	private final SpringNavigator springNavigator;
 
-	public MenuNavigationBar(SpringNavigator springNavigator) {
+	private final VaadinSecurity vaadinSecurity;
+
+	public MenuNavigationBar(SpringNavigator springNavigator, VaadinSecurity vaadinSecurity) {
 		this.springNavigator = springNavigator;
+		this.vaadinSecurity = vaadinSecurity;
 		initializeNavigationBarProperties();
 		addComponent(createNavigationBar());
 	}
@@ -34,6 +38,7 @@ public class MenuNavigationBar extends VerticalLayout {
 		menuBar.addStyleName("jb-menubar");
 		menuBar.addItem("Home", selectedItem -> springNavigator.navigateTo(DashboardPage.VIEW_NAME));
 		menuBar.addItem("Kurs żeglarza", selectedItem -> springNavigator.navigateTo(SailorCoursePage.VIEW_NAME));
+		menuBar.addItem("Logout", selectedItem -> vaadinSecurity.logout());
 		return menuBar;
 	}
 }

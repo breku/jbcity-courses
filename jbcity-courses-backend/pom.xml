@@ -33,6 +33,16 @@
 		</dependency>
 
 
+		<dependency>
+			<groupId>org.vaadin.spring.extensions</groupId>
+			<artifactId>vaadin-spring-ext-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.vaadin.spring.extensions</groupId>
+			<artifactId>vaadin-spring-ext-boot</artifactId>
+		</dependency>
+
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>com.vaadin</groupId>
