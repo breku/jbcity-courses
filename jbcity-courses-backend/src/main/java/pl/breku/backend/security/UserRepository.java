@@ -1,9 +1,10 @@
 package pl.breku.backend.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
+import pl.breku.backend.database.entity.Role;
+import pl.breku.backend.database.entity.User;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -22,12 +23,11 @@ public class UserRepository {
 	private PasswordEncoder passwordEncoder;
 
 
-
 	@PostConstruct
-	public void init(){
+	public void init() {
 		final String password = passwordEncoder.encode("q1w2e3r4");
-		users.add(new User("breku", password, 1L, Arrays.asList(new Role(1L, RoleType.ROLE_ADMIN), new Role(1L, RoleType.ROLE_USER))));
-		users.add(new User("jacek", password, 2L, Arrays.asList(new Role(1L, RoleType.ROLE_USER))));
+		users.add(new User(1L, "breku", password, Arrays.asList(new Role(1L, RoleType.ROLE_ADMIN), new Role(1L, RoleType.ROLE_USER))));
+		users.add(new User(2L, "jacek", password, Arrays.asList(new Role(1L, RoleType.ROLE_USER))));
 	}
 
 	public User findByUsername(String username) {

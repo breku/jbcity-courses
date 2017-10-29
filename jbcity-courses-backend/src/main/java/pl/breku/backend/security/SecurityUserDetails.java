@@ -3,6 +3,8 @@ package pl.breku.backend.security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import pl.breku.backend.database.entity.Role;
+import pl.breku.backend.database.entity.User;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,7 +19,7 @@ public class SecurityUserDetails extends User implements UserDetails {
 	private static final long serialVersionUID = -9191461920134961474L;
 
 	public SecurityUserDetails(String username, String password, long id, List<Role> roles) {
-		super(username, password, id, roles);
+		super(id, username, password ,roles);
 	}
 
 

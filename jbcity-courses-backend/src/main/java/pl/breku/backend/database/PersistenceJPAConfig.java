@@ -1,4 +1,4 @@
-package pl.breku.backend.jpa;
+package pl.breku.backend.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -35,7 +35,7 @@ public class PersistenceJPAConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
-		em.setPackagesToScan(new String[] { "pl.breku.backend" });
+		em.setPackagesToScan(new String[] { "pl.breku.backend.database.entity" });
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setJpaVendorAdapter(vendorAdapter);
 		em.setJpaProperties(additionalProperties());
@@ -68,6 +68,8 @@ public class PersistenceJPAConfig {
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.hbm2ddl.auto", jbConfiguration.getHibernateHbm2ddlAuto());
 		properties.setProperty("hibernate.dialect", jbConfiguration.getHibernateDialect());
+		properties.setProperty("hibernate.show_sql", "true");
+		properties.setProperty("hibernate.current_session_context_class", "thread");
 		return properties;
 	}
 

@@ -1,8 +1,9 @@
-package pl.breku.backend.security;
+package pl.breku.backend.database.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -10,10 +11,18 @@ import java.util.List;
  */
 @Data
 @AllArgsConstructor
+@Entity
+@Table(name = "users")
 public class User {
 
-	private String username;
-	private String password;
+	@Id
+	@GeneratedValue
 	private long id;
+	@Column
+	private String username;
+	@Column
+	private String password;
+
+	@OneToMany
 	private List<Role> roles;
 }
