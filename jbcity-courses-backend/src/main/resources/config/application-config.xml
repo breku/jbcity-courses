@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jbcity-courses>
+    <database>
+        <spring-datasource-driver>org.postgresql.Driver</spring-datasource-driver>
+        <spring-datasource-url>@spring.datasource.url@</spring-datasource-url>
+        <spring-datasource-username>@spring.datasource.username@</spring-datasource-username>
+        <spring-datasource-password>@spring.datasource.password@</spring-datasource-password>
+        <hibernate>
+            <dialect>org.hibernate.dialect.PostgreSQL94Dialect</dialect>
+            <hbm2ddl-auto>@hibernate.hbm2ddl-auto@</hbm2ddl-auto>
+        </hibernate>
+    </database>
+
+
+    <courses>
+        <sailor>
+            <path>@courses.sailor.path@</path>
+        </sailor>
+
+    </courses>
+</jbcity-courses>
