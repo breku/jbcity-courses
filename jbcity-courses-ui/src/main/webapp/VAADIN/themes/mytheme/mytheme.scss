@@ -58,6 +58,7 @@ $v-panel-border: 2px solid v-shade;
 
 @import "../valo/valo.scss";
 @import "custom.scss";
+@import "navigation.scss";
 
 @mixin mytheme {
   @include valo;

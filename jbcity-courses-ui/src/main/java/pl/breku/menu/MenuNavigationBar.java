@@ -6,6 +6,7 @@ import com.vaadin.ui.VerticalLayout;
 import org.vaadin.spring.security.VaadinSecurity;
 import pl.breku.course.sailor.SailorCoursePage;
 import pl.breku.dashboard.DashboardPage;
+import pl.breku.user.UserPage;
 
 /**
  * Created by breku on 13.09.17.
@@ -22,7 +23,8 @@ public class MenuNavigationBar extends VerticalLayout {
 		this.springNavigator = springNavigator;
 		this.vaadinSecurity = vaadinSecurity;
 		initializeNavigationBarProperties();
-		addComponent(createNavigationBar());
+		addComponent(createLeftNavigationBar());
+		addComponent(createRightNavigationBar());
 	}
 
 
@@ -33,12 +35,19 @@ public class MenuNavigationBar extends VerticalLayout {
 		setMargin(false);
 	}
 
-	private MenuBar createNavigationBar() {
+	private MenuBar createLeftNavigationBar() {
 		final MenuBar menuBar = new MenuBar();
-		menuBar.addStyleName("jb-menubar");
+		menuBar.addStyleName("jb-menubar-left");
 		menuBar.addItem("Home", selectedItem -> springNavigator.navigateTo(DashboardPage.VIEW_NAME));
 		menuBar.addItem("Kurs żeglarza", selectedItem -> springNavigator.navigateTo(SailorCoursePage.VIEW_NAME));
-		menuBar.addItem("Logout", selectedItem -> vaadinSecurity.logout());
+		return menuBar;
+	}
+
+	private MenuBar createRightNavigationBar() {
+		final MenuBar menuBar = new MenuBar();
+		menuBar.addStyleName("jb-menubar-right");
+		menuBar.addItem("Użytkownik", selectedItem -> springNavigator.navigateTo(UserPage.VIEW_NAME));
+		menuBar.addItem("Wyloguj", selectedItem -> vaadinSecurity.logout());
 		return menuBar;
 	}
 }

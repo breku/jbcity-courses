@@ -13,7 +13,7 @@ import pl.breku.page.AbstractPage;
 /**
  * Created by breku on 25.10.17.
  */
-@Secured("ROLE_ADMIN")
+@Secured("ROLE_USER")
 @SpringView(name = SailorCoursePage.VIEW_NAME)
 public class SailorCoursePage extends AbstractPage {
 
