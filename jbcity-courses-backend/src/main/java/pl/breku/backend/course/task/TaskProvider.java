@@ -1,6 +1,7 @@
 package pl.breku.backend.course.task;
 
 import org.springframework.stereotype.Component;
+import pl.breku.backend.config.JbConfiguration;
 import pl.breku.backend.file.FileReader;
 
 import java.util.List;
@@ -15,13 +16,16 @@ public class TaskProvider {
 
 	private final FileToTaskConverter fileToTaskConverter;
 
-	public TaskProvider(FileReader fileReader, FileToTaskConverter fileToTaskConverter) {
+	private final JbConfiguration jbConfiguration;
+
+	public TaskProvider(FileReader fileReader, FileToTaskConverter fileToTaskConverter, JbConfiguration jbConfiguration) {
 		this.fileReader = fileReader;
 		this.fileToTaskConverter = fileToTaskConverter;
+		this.jbConfiguration = jbConfiguration;
 	}
 
 	public List<Task> getTasks() {
-		final List<String> fileLines = fileReader.readFileFromClasspath("/questions/sailor", "1.budowa_jachtu.txt");
+		final List<String> fileLines = fileReader.readFile(jbConfiguration.getCoursesSailorPath(), "1.budowa_jachtu.txt");
 		return fileToTaskConverter.convertLinesToTasks(fileLines);
 	}
 }

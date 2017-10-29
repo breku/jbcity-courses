@@ -13,6 +13,8 @@ import java.util.List;
  */
 public class CourseContent extends VerticalLayout{
 
+	private static final long serialVersionUID = 2442725932630601483L;
+
 	private final List<Task> tasks;
 
 	public CourseContent(List<Task> tasks) {

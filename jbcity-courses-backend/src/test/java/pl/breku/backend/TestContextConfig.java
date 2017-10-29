@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = {
 		"pl.breku.backend.course",
 		"pl.breku.backend.file",
+		"pl.breku.backend.config",
 })
 public class TestContextConfig {
 }

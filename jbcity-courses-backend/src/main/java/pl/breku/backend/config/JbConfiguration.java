@@ -40,4 +40,9 @@ public class JbConfiguration {
 	public String getHibernateDialect() {
 		return xmlConfiguration.getString("database.hibernate.dialect");
 	}
+
+
+	public String getCoursesSailorPath() {
+		return xmlConfiguration.getString("courses.sailor.path");
+	}
 }

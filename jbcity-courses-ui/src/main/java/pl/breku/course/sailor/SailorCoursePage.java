@@ -28,7 +28,6 @@ public class SailorCoursePage extends AbstractPage {
 	protected void createComponent(VerticalLayout wrapper) {
 		wrapper.addComponent(createDashboardImage());
 		wrapper.addComponent(new Label("This is sailor course"));
-
 		wrapper.addComponent(new CourseContent(taskProvider.getTasks()));
 
 	}
