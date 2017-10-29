@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.breku.backend.AbstractSpringIntegrationTest;
+import pl.breku.backend.course.sailor.SailorCourseType;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class TaskProviderTestIT extends AbstractSpringIntegrationTest {
 		// given
 
 		// when
-		final List<Task> tasks = uut.getTasks();
+		final List<Task> tasks = uut.getSailorTasks(SailorCourseType.CONSTRUCTION_OF_THE_YACHT);
 
 		// then
 		Assertions.assertThat(tasks).isNotEmpty();

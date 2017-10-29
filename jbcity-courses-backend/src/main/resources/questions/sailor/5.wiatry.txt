@@ -258,8 +258,7 @@ a) zmniejszenie dryfu jachtu
 b) zmniejszenie przechyłu jachtu
 C) zmniejszenie prędkości jachtu
 d) zmniejszenie możliwości wywrotki
-53. Optymalny kąt ustawienia steru, przy którym otrzymamy największy
-moment skręcający jachtu to:
+53. Optymalny kąt ustawienia steru, przy którym otrzymamy największy moment skręcający jachtu to:
 a) 5 -10
 B) 30 - 45
 c) 60 - 80

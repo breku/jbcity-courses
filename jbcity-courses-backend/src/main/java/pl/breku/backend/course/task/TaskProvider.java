@@ -2,6 +2,7 @@ package pl.breku.backend.course.task;
 
 import org.springframework.stereotype.Component;
 import pl.breku.backend.config.JbConfiguration;
+import pl.breku.backend.course.sailor.SailorCourseType;
 import pl.breku.backend.file.FileReader;
 
 import java.util.List;
@@ -24,8 +25,8 @@ public class TaskProvider {
 		this.jbConfiguration = jbConfiguration;
 	}
 
-	public List<Task> getTasks() {
-		final List<String> fileLines = fileReader.readFile(jbConfiguration.getCoursesSailorPath(), "1.budowa_jachtu.txt");
+	public List<Task> getSailorTasks(SailorCourseType sailorCourseType) {
+		final List<String> fileLines = fileReader.readFile(jbConfiguration.getCoursesSailorPath(), sailorCourseType.getFilename());
 		return fileToTaskConverter.convertLinesToTasks(fileLines);
 	}
 }

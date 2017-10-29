@@ -5,10 +5,11 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import pl.breku.backend.course.task.TaskProvider;
-import pl.breku.backend.security.RoleType;
-import pl.breku.course.ui.CourseContent;
+import pl.breku.backend.course.Course;
+import pl.breku.backend.course.CourseProvider;
 import pl.breku.page.AbstractPage;
+
+import java.util.List;
 
 /**
  * Created by breku on 25.10.17.
@@ -22,13 +23,16 @@ public class SailorCoursePage extends AbstractPage {
 	private static final long serialVersionUID = -7957941300897228420L;
 
 	@Autowired
-	private TaskProvider taskProvider;
+	private CourseProvider courseProvider;
 
 	@Override
 	protected void createComponent(VerticalLayout wrapper) {
 		wrapper.addComponent(createDashboardImage());
 		wrapper.addComponent(new Label("This is sailor course"));
-		wrapper.addComponent(new CourseContent(taskProvider.getTasks()));
 
+		final List<Course> sailorCourses = courseProvider.getSailorCourses();
+		for (Course course : sailorCourses) {
+			wrapper.addComponent(new SailorCourseType(springNavigator, course));
+		}
 	}
 }
