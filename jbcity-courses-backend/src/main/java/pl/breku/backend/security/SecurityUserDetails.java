@@ -10,9 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Created by basakpie on 2017. 5. 11..
- */
+
 public class SecurityUserDetails extends User implements UserDetails {
 
 

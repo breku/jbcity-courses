@@ -1,7 +1,9 @@
 package pl.breku.backend.database.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,8 +13,10 @@ import java.util.List;
  */
 @Data
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "users")
+@NoArgsConstructor
 public class User {
 
 	@Id
@@ -23,6 +27,6 @@ public class User {
 	@Column
 	private String password;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Role> roles;
 }
