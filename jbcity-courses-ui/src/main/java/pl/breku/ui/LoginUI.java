@@ -18,6 +18,8 @@ import org.vaadin.spring.security.shared.VaadinSharedSecurity;
 @Theme("mytheme")
 public class LoginUI extends UI {
 
+    private static final long serialVersionUID = -4512721193230304655L;
+
     @Autowired
     VaadinSharedSecurity vaadinSecurity;
 

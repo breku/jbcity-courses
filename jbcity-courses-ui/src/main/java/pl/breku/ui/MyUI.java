@@ -14,6 +14,8 @@ import pl.breku.dashboard.DashboardPage;
 import pl.breku.error.AccessDeniedPage;
 import pl.breku.error.ErrorPage;
 
+import java.util.Collection;
+
 
 /**
  *
@@ -43,8 +45,18 @@ public class MyUI extends UI {
 		springNavigator.setErrorView(ErrorPage.class);
 		springViewProvider.setAccessDeniedViewClass(AccessDeniedPage.class);
 		getNavigator().addProvider(viewProvider);
-		springNavigator.navigateTo(DashboardPage.VIEW_NAME);
+		navigateToCurrentRequest();
 
 	}
+
+	private void navigateToCurrentRequest() {
+		final Collection<String> viewNames = springViewProvider.getViewNamesForCurrentUI();
+		if (viewNames.contains(springNavigator.getState())) {
+			springNavigator.navigateTo(springNavigator.getState());
+		} else {
+			springNavigator.navigateTo(DashboardPage.VIEW_NAME);
+		}
+	}
+
 
 }
