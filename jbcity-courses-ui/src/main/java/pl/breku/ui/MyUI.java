@@ -8,6 +8,7 @@ import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.spring.server.SpringVaadinServletRequest;
 import com.vaadin.ui.UI;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.breku.dashboard.DashboardPage;
@@ -51,11 +52,21 @@ public class MyUI extends UI {
 
 	private void navigateToCurrentRequest() {
 		final Collection<String> viewNames = springViewProvider.getViewNamesForCurrentUI();
-		if (viewNames.contains(springNavigator.getState())) {
+
+
+		if (StringUtils.isNotBlank(springNavigator.getState()) && viewNames.contains(getFirstPartOfState())) {
 			springNavigator.navigateTo(springNavigator.getState());
 		} else {
 			springNavigator.navigateTo(DashboardPage.VIEW_NAME);
 		}
+	}
+
+	private String getFirstPartOfState() {
+		final String state = springNavigator.getState();
+		if (state.contains("/")) {
+			return state.substring(0, state.indexOf("/"));
+		}
+		return state;
 	}
 
 
