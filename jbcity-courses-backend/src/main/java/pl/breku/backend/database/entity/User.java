@@ -22,7 +22,7 @@ public class User {
 	@Id
 	@GeneratedValue
 	private long id;
-	@Column
+	@Column(unique = true)
 	private String username;
 	@Column
 	private String password;

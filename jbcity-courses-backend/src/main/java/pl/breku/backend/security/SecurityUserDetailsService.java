@@ -34,12 +34,15 @@ public class SecurityUserDetailsService implements UserDetailsService {
 
 	@PostConstruct
 	public void init() {
-		final String password = passwordEncoder.encode("q1w2e3r4");
-		final User u1 = User.builder().username("breku").password(password).roles(Arrays.asList(Role.builder().type(RoleType.ROLE_ADMIN).build(), Role.builder().type(RoleType.ROLE_USER).build())).build();
-		final User u2 = User.builder().username("jacek").password(password).roles(Arrays.asList(Role.builder().type(RoleType.ROLE_USER).build())).build();
+		final User breku = userRepository.findByUsername("breku");
+		if (breku == null) {
+			final String password = passwordEncoder.encode("q1w2e3r4");
+			final User u1 = User.builder().username("breku").password(password).roles(Arrays.asList(Role.builder().type(RoleType.ROLE_ADMIN).build(), Role.builder().type(RoleType.ROLE_USER).build())).build();
+			final User u2 = User.builder().username("jacek").password(password).roles(Arrays.asList(Role.builder().type(RoleType.ROLE_USER).build())).build();
+			userRepository.save(u1);
+			userRepository.save(u2);
+		}
 
-		userRepository.save(u1);
-		userRepository.save(u2);
 	}
 
 }
