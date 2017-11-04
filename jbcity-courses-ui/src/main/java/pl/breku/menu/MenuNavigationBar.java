@@ -6,6 +6,7 @@ import com.vaadin.ui.VerticalLayout;
 import org.vaadin.spring.security.VaadinSecurity;
 import pl.breku.course.sailor.SailorCoursePage;
 import pl.breku.dashboard.DashboardPage;
+import pl.breku.ui.login.LoginPage;
 import pl.breku.user.UserPage;
 
 /**

@@ -17,10 +17,6 @@ public class DashboardPage extends AbstractPage {
 	private static final long serialVersionUID = 2111328748647906890L;
 
 
-	@Override
-	public void enter(ViewChangeListener.ViewChangeEvent event) {
-
-	}
 
 
 	@Override
