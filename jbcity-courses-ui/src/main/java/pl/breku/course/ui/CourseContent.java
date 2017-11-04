@@ -3,9 +3,9 @@ package pl.breku.course.ui;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
-import pl.breku.backend.course.Course;
-import pl.breku.backend.course.task.Answer;
-import pl.breku.backend.course.task.Task;
+import pl.breku.backend.database.entity.Course;
+import pl.breku.backend.database.entity.Answer;
+import pl.breku.backend.database.entity.Task;
 
 /**
  * Created by breku on 25.10.17.

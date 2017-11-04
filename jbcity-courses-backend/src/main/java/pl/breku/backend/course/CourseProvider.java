@@ -3,6 +3,7 @@ package pl.breku.backend.course;
 import org.springframework.stereotype.Component;
 import pl.breku.backend.course.sailor.SailorCourseType;
 import pl.breku.backend.course.task.TaskProvider;
+import pl.breku.backend.database.entity.Course;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,8 @@
 package pl.breku.backend.course.task;
 
 import org.junit.Test;
+import pl.breku.backend.database.entity.Answer;
+import pl.breku.backend.database.entity.Task;
 
 import java.util.Arrays;
 import java.util.List;

@@ -4,29 +4,31 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.breku.backend.security.RoleType;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
- * Created by basakpie on 2017. 5. 11..
+ * Created by breku on 25.10.17.
  */
 @Data
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "roles")
+@Table(name = "tasks")
 @NoArgsConstructor
-public class Role implements Serializable {
+public class Task implements Serializable{
 
-	private static final long serialVersionUID = -7569956409775155749L;
+	private static final long serialVersionUID = -9114493516018039037L;
 
 	@Id
 	@GeneratedValue
 	private Long id;
 
-	@Enumerated(EnumType.STRING)
-	private RoleType type;
+	@Column
+	private String question;
 
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Answer> answers;
 }

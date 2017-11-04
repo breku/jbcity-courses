@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.breku.backend.AbstractSpringIntegrationTest;
 import pl.breku.backend.course.sailor.SailorCourseType;
+import pl.breku.backend.database.entity.Task;
 
 import java.util.List;
 

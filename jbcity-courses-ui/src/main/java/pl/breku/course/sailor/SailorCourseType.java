@@ -3,7 +3,7 @@ package pl.breku.course.sailor;
 import com.vaadin.spring.navigator.SpringNavigator;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.VerticalLayout;
-import pl.breku.backend.course.Course;
+import pl.breku.backend.database.entity.Course;
 import pl.breku.course.CoursePage;
 
 /**

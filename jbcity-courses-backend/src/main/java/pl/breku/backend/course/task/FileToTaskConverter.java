@@ -2,6 +2,8 @@ package pl.breku.backend.course.task;
 
 import com.google.common.collect.Lists;
 import org.springframework.stereotype.Component;
+import pl.breku.backend.database.entity.Answer;
+import pl.breku.backend.database.entity.Task;
 
 import java.util.ArrayList;
 import java.util.List;

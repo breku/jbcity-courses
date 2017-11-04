@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import pl.breku.backend.course.Course;
+import pl.breku.backend.database.entity.Course;
 import pl.breku.backend.course.CourseProvider;
 import pl.breku.course.sailor.SailorCoursePage;
 import pl.breku.course.ui.CourseContent;

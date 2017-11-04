@@ -5,7 +5,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import pl.breku.backend.course.Course;
+import pl.breku.backend.database.entity.Course;
 import pl.breku.backend.course.CourseProvider;
 import pl.breku.page.AbstractPage;
 
